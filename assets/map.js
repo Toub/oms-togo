@@ -80,7 +80,7 @@
                         color: 'white',
                         dashArray: '3',
                         fillOpacity: 0.7,
-                        fillColor: options.fillColor(feature.properties.Shape_Area)
+                        fillColor: options.fillColor(feature.properties)
                     };
                 },
                 onEachFeature: function (feature, layer) {

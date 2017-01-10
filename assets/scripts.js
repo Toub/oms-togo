@@ -9,15 +9,16 @@
     var mode = 'quartiers';
 
     function showQuartiers() {
-        $.getJSON("./assets/data/Togo_lome_quartiers_wgs84.geojson", function (json) {
+        $.getJSON("./assets/data/togo_lome_quartiers_wgs84.geojson", function (json) {
             var data = json;
             var geojson = mapService.createGeojson(data, {
                 updateTooltip: function (props) {
                     this._div.innerHTML = '<h4>Quartiers de Lomé</h4>' + (props ?
-                        '<b>' + props.name + '</b>' :
+                        '<b>' + props.QUARTIER + '</b>' :
                         'Survoler un quartier');
                 },
-                fillColor: function (d) {
+                fillColor: function (props) {
+                    var d = props.Shape_Area;
                     return d > 3500000 ? '#800026' :
                         d > 3000000 ? '#BD0026' :
                         d > 2500000 ? '#E31A1C' :
@@ -43,10 +44,11 @@
                         '<b>' + props.NOM + '</b>' :
                         'Survoler un arrondissement');
                 },
-                fillColor: function (d) {
-                    return d > 3500000 ? '#800026' :
-                        d > 3000000 ? '#BD0026' :
-                        d > 2500000 ? '#E31A1C' :
+                fillColor: function (props) {
+                    var d = props.Shape_Area;
+                    return d > 5000000 ? '#800026' :
+                        d > 4000000 ? '#BD0026' :
+                        d > 3000000 ? '#E31A1C' :
                         d > 2000000 ? '#FC4E2A' :
                         d > 1500000 ? '#FD8D3C' :
                         d > 1000000 ? '#FEB24C' :
